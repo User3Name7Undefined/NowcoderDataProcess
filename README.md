@@ -80,7 +80,6 @@ Crawler2.0/
 │   ├── rank_page_3.html
 │   └── input.xls
 ├── Output/             # 输出文件目录
-│   ├── output.xlsx
 │   ├── output.csv
 │   ├── user_ids.txt
 │   ├── not_found_users.txt
@@ -96,7 +95,7 @@ Crawler2.0/
 
 **目录说明：**
 - `Input/` - 存放所有输入文件（HTML 文件和 Excel 文件）
-- `Output/` - 存放所有输出文件（生成的 Excel、CSV、用户ID清单、头像等）
+- `Output/` - 存放所有输出文件（生成的 CSV、用户ID清单、头像等）
 
 ---
 
@@ -117,7 +116,7 @@ Crawler2.0/
    },
    "files": {
       "input_file": "input.xls",
-      "output_file": "output.xlsx",
+      "output_file": "output.csv",
       "user_id_list": "user_ids.txt",
       "not_found_users": "not_found_users.txt",
       "avatar_dir": "avatars"
@@ -193,16 +192,15 @@ Crawler2.0/
 python get_user_id.py
 ```
 
-#### 输出文件（位于 `Output/` 目录）
-
-- `output.xlsx` - 包含完整用户信息的 Excel 文件
-- `output.csv` - CSV 格式（UTF-8 with BOM 编码）
+-#### 输出文件（位于 `Output/` 目录）
+-
+- `output.csv` - CSV 格式（UTF-8 with BOM 编码），包含完整用户信息
 - `user_ids.txt` - 用户ID清单（每行一个ID，去重）
 - `not_found_users.txt` - 未找到ID的用户列表
 
 说明与细节：
 - 脚本会尝试使用多种 Excel 解析引擎读取文件（以提高兼容性），如果读取失败会抛出相应错误并提示。
-- 输出的 `output.xlsx` / `output.csv` 为脚本生成的精简表，包含列：`用户ID`、`昵称`、`真实姓名`、`学校`。
+-- 输出的 `output.csv` 为脚本生成的精简表，包含列：`用户ID`、`昵称`、`真实姓名`、`学校`。
 - `user_ids.txt` 为去重后的用户ID列表（按出现顺序去重），适合作为 `get_user_avatar.py` 的输入。
 - 未匹配到 ID 的昵称会被写入 `not_found_users.txt`，建议人工核对这些昵称与 HTML 页面或报名信息进行比对后补全。
 
@@ -306,7 +304,7 @@ python rename_logos.py Output/avatars --dry-run
 2. 准备输入 Excel 文件
    ↓
 3. 运行 get_user_id.py
-   ├─ 输出: output.xlsx / output.csv
+   ├─ 输出: output.csv
    └─ 输出: user_ids.txt
    ↓
 4. 运行 get_user_avator.py

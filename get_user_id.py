@@ -197,14 +197,18 @@ class NowCoderLocalParser:
             if out_dir:
                 os.makedirs(out_dir, exist_ok=True)
 
-            # 保存文件（保持xlsx与csv两个格式）
-            try:
-                df_new.to_excel(self.output_file, index=False)
-                print(f"处理完成！新文件已保存为: {self.output_file}")
-            except Exception as e:
-                print(f"保存Excel失败: {e}")
+            # 仅保存为 CSV（UTF-8 带 BOM）
+            # 如果配置的 output_file 不是以 .csv 结尾，则替换扩展名为 .csv
+            if self.output_file and self.output_file.lower().endswith('.csv'):
+                csv_file = self.output_file
+            else:
+                # 若未配置或配置为其他扩展名，则将其扩展名替换为 .csv 或添加 .csv
+                if self.output_file:
+                    base = os.path.splitext(self.output_file)[0]
+                    csv_file = f"{base}.csv"
+                else:
+                    csv_file = 'Output/output.csv'
 
-            csv_file = self.output_file.replace('.xlsx', '.csv').replace('.xls', '.csv')
             try:
                 df_new.to_csv(csv_file, index=False, encoding='utf-8-sig')
                 print(f"CSV文件已保存为: {csv_file}")
@@ -264,7 +268,7 @@ class NowCoderLocalParser:
             },
             "files": {
                 "input_file": "input.xls",
-                "output_file": "output.xlsx",
+                "output_file": "output.csv",
                 "user_id_list": "user_ids.txt",
                 "not_found_users": "not_found_users.txt",
                 "avatar_dir": "avatars"
