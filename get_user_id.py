@@ -23,8 +23,7 @@ class NowCoderLocalParser:
         # HTML文件路径（添加Input/前缀）
         html_files_raw = local_config.get('html_files', [])
         self.html_files = [f'Input/{f}' if not f.startswith('Input/') else f 
-                          for f in html_files_raw]
-        self.problem_count = local_config.get('problem_count', 13)
+                  for f in html_files_raw]
         
         # 输入文件（添加Input/前缀）
         input_file_raw = files_config.get('input_file')
@@ -261,8 +260,7 @@ class NowCoderLocalParser:
                     "rank_page_1.html",
                     "rank_page_2.html",
                     "rank_page_3.html"
-                ],
-                "problem_count": 13
+                ]
             },
             "files": {
                 "input_file": "input.xls",

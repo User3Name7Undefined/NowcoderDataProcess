@@ -114,7 +114,6 @@ Crawler2.0/
          "rank_page_2.html",
          "rank_page_3.html"
       ],
-      "problem_count": 13
    },
    "files": {
       "input_file": "input.xls",
@@ -133,7 +132,6 @@ Crawler2.0/
 | 配置项 | 说明 |
 |--------|------|
 | `html_files` | 排行榜 HTML 文件名列表（保存在 `Input/` 目录中） |
-| `problem_count` | 竞赛题目数量 |
 | `input_file` | 输入的 Excel 文件名（位于 `Input/` 目录） |
 | `output_file` | 输出的 Excel 文件名（保存到 `Output/` 目录） |
 | `user_id_list` | 用户ID清单文件名（保存到 `Output/` 目录） |
